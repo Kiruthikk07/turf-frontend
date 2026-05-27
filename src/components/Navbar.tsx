@@ -31,7 +31,7 @@ export default function Navbar() {
         animate={{ y: scrolled ? -80 : 0, opacity: scrolled ? 0 : 1 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
         className="fixed top-0 left-0 right-0 z-50 pointer-events-none border-b border-white/8"
-        style={{ background: "rgba(2, 11, 6, 0.92)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
+        style={{ background: "rgba(13, 13, 20, 0.95)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
       >
         <div className="pointer-events-auto max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <motion.a href="#" className="flex items-center gap-2" whileHover={{ scale: 1.03 }}>

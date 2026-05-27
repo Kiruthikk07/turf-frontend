@@ -2,71 +2,50 @@
 
 import { motion } from "framer-motion";
 import { Zap, Mail, Globe, Send, AtSign } from "lucide-react";
+import Image from "next/image";
 
-const footerLinks = {
-  Product: ["Features", "Pricing", "Dashboard", "Mobile App", "API Docs"],
-  Company: ["About Us", "Blog", "Careers", "Press Kit"],
-  Support: ["Help Center", "Contact Us", "Status Page", "Community"],
-  Legal: ["Privacy Policy", "Terms of Service", "Refund Policy"],
+const links = {
+  Product: ["Features", "Pricing", "Dashboard", "API Docs"],
+  Company: ["About", "Blog", "Careers"],
+  Support: ["Help Center", "Contact", "Status"],
 };
-
-const socials = [
-  { icon: Send, href: "#", label: "Telegram" },
-  { icon: AtSign, href: "#", label: "Social" },
-  { icon: Globe, href: "#", label: "Website" },
-  { icon: Mail, href: "#", label: "Email" },
-];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 pt-16 pb-8 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Top row */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+    <footer className="border-t border-white/5 pt-12 pb-8">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2">
-            <motion.div className="flex items-center gap-2 mb-4" whileHover={{ scale: 1.02 }}>
-              <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center glow-green">
-                <Zap size={16} className="text-black fill-black" />
-              </div>
-              <span className="text-lg font-bold">
-                Turf<span className="text-green-400">Pro</span>
-              </span>
-            </motion.div>
-            <p className="text-sm text-white/40 leading-relaxed mb-5 max-w-[220px]">
-              The all-in-one platform for modern turf management. Trusted by 2,400+ facilities.
+            <motion.a href="#" className="flex items-center gap-2 mb-3" whileHover={{ scale: 1.02 }}>
+              <Image src="/Logo.png" alt="TurfPro" width={28} height={28} className="rounded-md" />
+              <span className="font-bold">Turf<span className="text-green-400">Pro</span></span>
+            </motion.a>
+            <p className="text-xs text-white/35 leading-relaxed mb-4 max-w-[180px]">
+              The simple way to manage and grow your turf business.
             </p>
-            <div className="flex gap-3">
-              {socials.map(({ icon: Icon, href, label }) => (
+            <div className="flex gap-2">
+              {[Send, AtSign, Globe, Mail].map((Icon, i) => (
                 <motion.a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-8 h-8 rounded-lg glass border border-white/10 flex items-center justify-center text-white/40 hover:text-green-400 hover:border-green-500/30 transition-all"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
+                  key={i}
+                  href="#"
+                  className="w-7 h-7 rounded-lg glass border border-white/8 flex items-center justify-center text-white/35 hover:text-green-400 hover:border-green-500/25 transition-all"
+                  whileHover={{ scale: 1.1 }}
                 >
-                  <Icon size={14} />
+                  <Icon size={13} />
                 </motion.a>
               ))}
             </div>
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-4">
-                {category}
-              </h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-white/35 hover:text-green-400 transition-colors duration-200"
-                    >
-                      {link}
-                    </a>
+          {Object.entries(links).map(([cat, items]) => (
+            <div key={cat}>
+              <h4 className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-3">{cat}</h4>
+              <ul className="space-y-2">
+                {items.map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-xs text-white/30 hover:text-green-400 transition-colors">{item}</a>
                   </li>
                 ))}
               </ul>
@@ -74,16 +53,9 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/25">
-            © {new Date().getFullYear()} TurfPro. All rights reserved.
-          </p>
-          <div className="flex items-center gap-1 text-xs text-white/25">
-            Made with
-            <span className="text-green-500 mx-0.5">♥</span>
-            for turf owners everywhere
-          </div>
+        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/20">© {new Date().getFullYear()} TurfPro. All rights reserved.</p>
+          <p className="text-xs text-white/20">Made with <span className="text-green-500">♥</span> for turf owners</p>
         </div>
       </div>
     </footer>
