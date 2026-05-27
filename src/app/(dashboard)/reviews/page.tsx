@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, TrendingUp } from "lucide-react";
+import { Star } from "lucide-react";
 
 const reviews = [
   { id: "R001", player: "Arjun Nair", turf: "Football A", venue: "Prime Sports", rating: 5, comment: "Amazing turf, well maintained. Will come again!", date: "2026-05-26", verified: true },
@@ -24,7 +24,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map((s) => (
-        <Star key={s} size={11} className={s <= rating ? "text-yellow-400 fill-yellow-400" : "text-white/15"} />
+        <Star key={s} size={13} className={s <= rating ? "text-yellow-400 fill-yellow-400" : "text-white/15"} />
       ))}
     </div>
   );
@@ -34,32 +34,32 @@ export default function ReviewsPage() {
   const avgRating = (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1);
 
   return (
-    <div className="space-y-6 max-w-6xl">
+    <div className="space-y-6 w-full">
       <div>
-        <h1 className="text-2xl font-black">Reviews</h1>
-        <p className="text-white/40 text-sm mt-0.5">Player feedback across all turfs</p>
+        <h1 className="text-3xl font-black">Reviews</h1>
+        <p className="text-white/40 text-base mt-1">Player feedback across all turfs</p>
       </div>
 
       {/* Overall + per-turf summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Overall */}
-        <div className="bg-white/3 border border-white/6 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-          <p className="text-5xl font-black text-yellow-400 mb-2">{avgRating}</p>
-          <div className="flex gap-0.5 mb-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Overall rating */}
+        <div className="bg-white/3 border border-white/6 rounded-2xl p-8 flex flex-col items-center justify-center text-center">
+          <p className="text-6xl font-black text-yellow-400 mb-3">{avgRating}</p>
+          <div className="flex gap-1 mb-2">
             {[1,2,3,4,5].map((s) => (
-              <Star key={s} size={16} className="text-yellow-400 fill-yellow-400" />
+              <Star key={s} size={18} className="text-yellow-400 fill-yellow-400" />
             ))}
           </div>
-          <p className="text-xs text-white/35">{reviews.length} reviews total</p>
+          <p className="text-sm text-white/35">{reviews.length} reviews total</p>
         </div>
 
         {/* Per turf */}
-        <div className="lg:col-span-2 bg-white/3 border border-white/6 rounded-2xl p-5 space-y-3">
-          <p className="text-xs font-semibold text-white/40 mb-4">Rating by Turf</p>
+        <div className="lg:col-span-2 bg-white/3 border border-white/6 rounded-2xl p-6 space-y-4">
+          <p className="text-sm font-semibold text-white/40 mb-2">Rating by Turf</p>
           {turfSummary.map((t) => (
             <div key={t.turf} className="flex items-center gap-3">
-              <span className="text-xs text-white/50 w-28 flex-shrink-0">{t.turf}</span>
-              <div className="flex-1 h-1.5 bg-white/8 rounded-full overflow-hidden">
+              <span className="text-sm text-white/50 w-28 flex-shrink-0">{t.turf}</span>
+              <div className="flex-1 h-2 bg-white/8 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${(t.avg / 5) * 100}%` }}
@@ -68,8 +68,8 @@ export default function ReviewsPage() {
                   className="h-full bg-yellow-400 rounded-full"
                 />
               </div>
-              <span className="text-xs font-bold text-yellow-400 w-8">{t.avg}</span>
-              <span className="text-[10px] text-white/25 w-16">{t.total} reviews</span>
+              <span className="text-sm font-bold text-yellow-400 w-8">{t.avg}</span>
+              <span className="text-xs text-white/25 w-20">{t.total} reviews</span>
             </div>
           ))}
         </div>
@@ -86,24 +86,24 @@ export default function ReviewsPage() {
             className="bg-white/3 border border-white/6 rounded-2xl p-5 flex flex-col sm:flex-row gap-4"
           >
             <div className="flex items-start gap-3 flex-1">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-[11px] font-black text-white flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-xs font-black text-white flex-shrink-0">
                 {r.player.split(" ").map(n => n[0]).join("")}
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="text-xs font-semibold text-white/80">{r.player}</p>
+                  <p className="text-sm font-semibold text-white/80">{r.player}</p>
                   {r.verified && (
-                    <span className="text-[9px] bg-green-500/15 text-green-400 px-1.5 py-0.5 rounded-full font-medium">verified</span>
+                    <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded-full font-medium">verified</span>
                   )}
                 </div>
                 <div className="flex items-center gap-2 mb-2">
                   <Stars rating={r.rating} />
-                  <span className="text-[10px] text-white/30">{r.turf} · {r.venue}</span>
+                  <span className="text-xs text-white/30">{r.turf} · {r.venue}</span>
                 </div>
-                <p className="text-xs text-white/55 leading-relaxed">"{r.comment}"</p>
+                <p className="text-sm text-white/55 leading-relaxed">&quot;{r.comment}&quot;</p>
               </div>
             </div>
-            <p className="text-[10px] text-white/25 flex-shrink-0">{r.date}</p>
+            <p className="text-xs text-white/25 flex-shrink-0">{r.date}</p>
           </motion.div>
         ))}
       </div>

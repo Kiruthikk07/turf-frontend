@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Plus, MapPin, Clock, Users, MoreVertical } from "lucide-react";
+import { Plus, MapPin, MoreVertical } from "lucide-react";
 
 const turfs = [
   { id: "T001", name: "Football Turf A", venue: "Prime Sports Arena", location: "Velachery, Chennai", sports: ["Football"], capacity: 10, slotDuration: 60, pricePerHour: 800, status: "active", occupancy: 87 },
@@ -18,18 +18,18 @@ const sportEmoji: Record<string, string> = {
 
 export default function TurfsPage() {
   return (
-    <div className="space-y-6 max-w-6xl">
+    <div className="space-y-6 w-full">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black">Turfs</h1>
-          <p className="text-white/40 text-sm mt-0.5">{turfs.length} turfs across all venues</p>
+          <h1 className="text-3xl font-black">Turfs</h1>
+          <p className="text-white/40 text-base mt-1">{turfs.length} turfs across all venues</p>
         </div>
-        <button className="flex items-center gap-2 bg-green-500 hover:bg-green-400 text-black font-bold text-xs px-4 py-2.5 rounded-xl transition-colors">
-          <Plus size={14} /> Add Turf
+        <button className="flex items-center gap-2 bg-green-500 hover:bg-green-400 text-black font-bold text-sm px-4 py-2.5 rounded-xl transition-colors">
+          <Plus size={16} /> Add Turf
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {turfs.map((turf, i) => (
           <motion.div
             key={turf.id}
@@ -41,31 +41,31 @@ export default function TurfsPage() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xl">{sportEmoji[turf.sports[0]] ?? "🏟️"}</span>
-                  <h3 className="text-sm font-bold text-white/90">{turf.name}</h3>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-2xl">{sportEmoji[turf.sports[0]] ?? "🏟️"}</span>
+                  <h3 className="text-base font-bold text-white/90">{turf.name}</h3>
                 </div>
-                <div className="flex items-center gap-1 text-[10px] text-white/35">
-                  <MapPin size={10} /> {turf.location}
+                <div className="flex items-center gap-1 text-xs text-white/35">
+                  <MapPin size={11} /> {turf.location}
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${turf.status === "active" ? "bg-green-500/15 text-green-400" : "bg-yellow-500/15 text-yellow-400"}`}>
+                <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${turf.status === "active" ? "bg-green-500/15 text-green-400" : "bg-yellow-500/15 text-yellow-400"}`}>
                   {turf.status}
                 </span>
                 <button className="text-white/30 hover:text-white/60 transition-colors">
-                  <MoreVertical size={14} />
+                  <MoreVertical size={15} />
                 </button>
               </div>
             </div>
 
             {/* Occupancy bar */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] text-white/35">Today's Occupancy</span>
-                <span className="text-[10px] font-semibold text-white/60">{turf.occupancy}%</span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-white/35">Today&apos;s Occupancy</span>
+                <span className="text-sm font-semibold text-white/60">{turf.occupancy}%</span>
               </div>
-              <div className="h-1.5 bg-white/8 rounded-full overflow-hidden">
+              <div className="h-2 bg-white/8 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${turf.occupancy}%` }}
@@ -77,16 +77,16 @@ export default function TurfsPage() {
 
             <div className="grid grid-cols-3 gap-2 border-t border-white/5 pt-3">
               <div>
-                <p className="text-[10px] text-white/30 mb-0.5">Price</p>
-                <p className="text-xs font-semibold text-white/70">₹{turf.pricePerHour}/hr</p>
+                <p className="text-xs text-white/30 mb-0.5">Price</p>
+                <p className="text-sm font-semibold text-white/70">₹{turf.pricePerHour}/hr</p>
               </div>
               <div>
-                <p className="text-[10px] text-white/30 mb-0.5">Capacity</p>
-                <p className="text-xs font-semibold text-white/70">{turf.capacity} players</p>
+                <p className="text-xs text-white/30 mb-0.5">Capacity</p>
+                <p className="text-sm font-semibold text-white/70">{turf.capacity} players</p>
               </div>
               <div>
-                <p className="text-[10px] text-white/30 mb-0.5">Slot</p>
-                <p className="text-xs font-semibold text-white/70">{turf.slotDuration} min</p>
+                <p className="text-xs text-white/30 mb-0.5">Slot</p>
+                <p className="text-sm font-semibold text-white/70">{turf.slotDuration} min</p>
               </div>
             </div>
           </motion.div>

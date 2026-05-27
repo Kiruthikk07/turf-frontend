@@ -55,7 +55,7 @@ export default function Hero() {
               className="flex flex-wrap gap-3 mb-10"
             >
               <motion.a
-                href="#"
+                href="/login"
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 className="group flex items-center gap-2 bg-green-500 hover:bg-green-400 text-black font-bold px-6 py-3 rounded-xl text-sm transition-all glow-green"
@@ -64,7 +64,7 @@ export default function Hero() {
                 <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </motion.a>
               <motion.a
-                href="#"
+                href="#how-it-works"
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex items-center gap-2 border border-white/15 hover:border-green-500/40 text-white/70 hover:text-white font-medium px-6 py-3 rounded-xl text-sm transition-all"

@@ -57,14 +57,14 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <motion.a
-              href="#"
+              href="/login"
               className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2"
               whileHover={{ scale: 1.02 }}
             >
               Sign In
             </motion.a>
             <motion.a
-              href="#"
+              href="/login"
               className="text-sm font-semibold bg-green-500 hover:bg-green-400 text-black px-4 py-2 rounded-lg transition-colors"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
@@ -120,14 +120,14 @@ export default function Navbar() {
             {/* CTA */}
             <div className="flex items-center gap-2">
               <motion.a
-                href="#"
+                href="/login"
                 className="hidden sm:block text-xs text-white/50 hover:text-white transition-colors px-2 py-1.5"
                 whileHover={{ scale: 1.02 }}
               >
                 Sign In
               </motion.a>
               <motion.a
-                href="#"
+                href="/login"
                 className="text-xs font-bold bg-green-500 hover:bg-green-400 text-black px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
